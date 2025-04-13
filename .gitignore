@@ -1,0 +1,13 @@
+.clang-format
+.vscode/
+
+# Archivos de Cpp
+*.o
+*.exe
+*.out
+
+# Archivos de CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile

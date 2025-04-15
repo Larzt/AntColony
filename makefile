@@ -12,6 +12,7 @@ OBJ = $(OBJ_DIR)/main.o \
       $(OBJ_DIR)/src/grid.o \
       $(OBJ_DIR)/src/cell.o \
       $(OBJ_DIR)/src/state.o \
+      $(OBJ_DIR)/src/states/ant.o \
 
 # Regla para construir el objetivo final
 $(TARGET): $(OBJ)
@@ -26,6 +27,11 @@ $(OBJ_DIR)/main.o: main.cc lib/cell.h lib/grid.h
 $(OBJ_DIR)/src/%.o: src/%.cc lib/%.h
 	mkdir -p $(OBJ_DIR)/src
 	g++ -c $(CFLAGS) $< -o $@
+
+# Regla específica para ant.o
+$(OBJ_DIR)/src/states/ant.o: src/states/ant.cc lib/state.h lib/cell.h
+	mkdir -p $(OBJ_DIR)/src/states
+	g++ -c $(CFLAGS) src/states/ant.cc -o $(OBJ_DIR)/src/states/ant.o
 
 # Reglas de limpieza
 .PHONY: clean

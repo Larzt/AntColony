@@ -7,6 +7,15 @@
 
 class Cell;
 
+/**
+ * @class Grid
+ * @brief Represents the two-dimensional grid environment for the simulation,
+ *        containing all cells and managing their updates.
+ *
+ * This class manages the allocation and interaction of cells within a
+ * rectangular space. It handles grid generation, simulation steps, and
+ * user-defined ant placement.
+ */
 class Grid {
  public:
   Grid(void);
@@ -27,8 +36,11 @@ class Grid {
   ~Grid() {};
 
  private:
+  ///< The logical width of the grid (not including borders).
   int width_;
+  ///< The logical height of the grid (not including borders).
   int height_;
+  ///< Two-dimensional array of cell pointers representing the grid.
   Cell** grid_;
 };
 

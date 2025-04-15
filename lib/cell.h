@@ -1,8 +1,8 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include <cstdlib>  // Para rand() y srand()
-#include <ctime>    // Para time()
+#include <cstdlib>  // rand() srand()
+#include <ctime>    // time()
 #include <iostream>
 #include <vector>
 
@@ -10,9 +10,20 @@
 #include "grid.h"
 #include "state.h"
 
+// Forward declarations
 class Grid;
 class State;
 
+/**
+ * @class Cell
+ * @brief Represents a single cell in the grid, which can hold different states
+ * (e.g., empty, ant).
+ *
+ * This class manages the cell's position, state, pheromone level, and its
+ * interactions with neighbours. The cell can be updated, moved, or have its
+ * pheromone level altered. It is also responsible for tracking whether it has
+ * been updated during the current iteration to avoid conflicting state changes.
+ */
 class Cell {
  public:
   Cell();
@@ -39,10 +50,16 @@ class Cell {
   friend std::ostream &operator<<(std::ostream &, const Cell &);
 
  private:
+  ///< The position of the cell in the grid.
   Vector2 position_;
+  ///< The neighbouring cells of this cell.
   std::vector<Cell *> neighbors_;
+  ///< The current state of the cell (e.g., empty, ant).
   State *state_;
+  ///< The pheromone level of the cell.
   Pheromone pheromone_;
+  ///< Flag indicating whether the cell has been updated in the current
+  ///< iteration.
   bool updated_;
 };
 
